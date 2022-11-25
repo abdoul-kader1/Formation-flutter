@@ -1,22 +1,17 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:formation_flutter/main.dart';
 
-import '../main.dart';
 
-class ExerciceBasique extends StatefulWidget{
-  String title= "Exercice Basique";
-  @override
-  State<StatefulWidget> createState() {
-    return _ExerciceBasique();
-  }
+class BasicPage extends StatelessWidget {
+  final String title;
+  const BasicPage({ required this.title,super.key});
 
-}
-
-class _ExerciceBasique extends State<ExerciceBasique>{
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
     return Scaffold(
-        appBar: AppBar(
+      appBar: AppBar(
+        title: Text("Facebook Profile"),
           leading: IconButton(
             icon: Icon(Icons.arrow_back),
             onPressed: (){
@@ -27,280 +22,204 @@ class _ExerciceBasique extends State<ExerciceBasique>{
                   })
               );
             },
-          ),
-          title: Text(widget.title),
-        ),
-        body:SingleChildScrollView(
-          child: Column(
-            children: [ //Profile(Lecontexte: context),
-               Profile1(),
-              SizedBox(height:13),Divider(thickness:1),AproposDeMoi(),Divider(thickness: 1),
-              SizedBox(height:8),Amis(),Divider(thickness: 1),
-              Post(
-                  imageUser:"lib/Exercice Basique/image/utilisateur1.jpg",
-                  imagePost:"lib/Exercice Basique/image/post1.jpg",
-                  nomUser: "Serifou",
-                  temps: "Il y'a 12 heures",
-                  descriptionPost:"Je vais vous partagé mon bout de code flutter",
-                  likes: "12 likes",
-                  comments: "7 commentaires"
-
-              ),
-              Post(
-                  imageUser:"lib/Exercice Basique/image/utilisateur2.jpg",
-                  imagePost:"lib/Exercice Basique/image/post2.jpg",
-                  nomUser: "Ismael",
-                  temps: "Il y'a 1 heures",
-                  descriptionPost:"En avant pour devenir un pro flutter",
-                  likes: "145 likes",
-                  comments: "78 commentaires"
-
-              ),
-              Post(
-                  imageUser:"lib/Exercice Basique/image/utilisateur3.jpg",
-                  imagePost:"lib/Exercice Basique/image/post3.jpg",
-                  nomUser: "Christ",
-                  temps: "Il y'a 1 minutes",
-                  descriptionPost:"Comment ne pas aimer l'informatique pfff",
-                  likes: "14 likes",
-                  comments: "9 commentaires"
-
-              ),
-              Post(
-                  imageUser:"lib/Exercice Basique/image/utilisateur4.jpg",
-                  imagePost:"lib/Exercice Basique/image/post4.jpg",
-                  nomUser: "Cédric",
-                  temps: "Il y'a 15 minutes",
-                  descriptionPost:"j'ai évoluer dans mon apprentissage grace a kader",
-                  likes: "1400 likes",
-                  comments: "549 commentaires"
-
-              )
-            ],
-          ),
-        ),
-      );
-  }
-  //Sexion du profile
-  Widget Profile1(){
-    return Stack(
-      alignment: Alignment.topCenter,
-      children: [
-        //photo de couverture
-        Image.asset("lib/Exercice Basique/image/photo couverture.jpg"),
-        Padding(
-          padding:EdgeInsets.only(top:188),
-          child: Column(
-            children: [
-              //photo de profile
-             CircleAvatar(
-               radius: 70,
-               backgroundColor: Colors.white,
-               child: CircleAvatar(
-                   radius: 65,
-                 backgroundImage:AssetImage("lib/Exercice Basique/image/photo profile.jpg"),
-               ),
-             ),
-              SizedBox(height:1),
-              //Description du profile
-              Text(
-                "Serifou Ahmed Abdoul-Kader",
-                style:TextStyle(
-                    fontSize: 19,
-                    fontWeight: FontWeight.bold,
-                    fontStyle: FontStyle.italic
-                ),
-              ),
-              SizedBox(height:8),
-              Text(
-                "Un jours l'informatique dominera le monde mais \n pas aujourd'hui c'est l'heure de la sieste",
-                textAlign: TextAlign.center,
-                style:TextStyle(
-                    fontSize: 15,
-                    color: Colors.grey,
-                    fontStyle: FontStyle.italic
-                ),
-              ),
-              SizedBox(height:13),
-              Row(
-                mainAxisAlignment:MainAxisAlignment.spaceEvenly,
-                children: [
-                  ElevatedButton(
-                    onPressed:(){},
-                    child: Text("Modifier le profile"),
-                    style: ElevatedButton.styleFrom(
-                        padding: EdgeInsets.only(left:60,right:60)
-                    ),
+          )
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Stack(
+              alignment: Alignment.topCenter,
+              children: [
+                Image.asset("lib/Exercice Basique/image/photo couverture.jpg", height: 200,width: width, fit: BoxFit.cover,),
+                Padding(
+                  padding: EdgeInsets.only(top: 125),
+                  child: CircleAvatar(radius: 75, backgroundColor: Colors.white,
+                    child: myProfilePic(72),
                   ),
-                  ElevatedButton(
-                    onPressed:(){},
-                    child: Icon(Icons.add_a_photo_outlined),
+                )
+              ],
+            ),
+            Row(
+              children: [
+                Spacer(),
+                Text(
+                  "Serifou kader",
+                  style: TextStyle(
+                      fontStyle: FontStyle.italic,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 25
                   ),
-                ],
-              )
-            ],
-          ),
-        )
-      ],
+                ),
+                Spacer()
+              ],
+            ),
+            Padding(
+                padding: EdgeInsets.all(10),
+                child: Text("Un jour les chats domineront le monde, mais pas aujourd'hui, c'est l'heure de la sieste",
+                  style: TextStyle(
+                      color: Colors.grey,
+                      fontStyle: FontStyle.italic
+                  ),
+                  textAlign: TextAlign.center,
+                )
+            ),
+            Row(
+              children: [
+                Expanded(child: buttonContainer(text: "Modifier le profil")),
+                buttonContainer(icon: Icons.border_color)
+              ],
+            ),
+            Divider(thickness: 2,),
+            sectionTitleText("A propos de moi"),
+            aboutRow(icon: Icons.house, text: "Hyères les palmiers, France"),
+            aboutRow(icon: Icons.work, text: "Développeur Flutter"),
+            aboutRow(icon: Icons.favorite, text: "En couple avec mon chat"),
+            Divider(thickness: 2,),
+            sectionTitleText("Amis"),
+            allFriends(width / 3.5),
+            Divider(thickness: 2,),
+            sectionTitleText("Mes Posts"),
+            post(time: "5 minutes", image: "lib/Exercice Basique/image/post4.jpg", desc: "Petit tour au Magic World, on s'est bien amusés et en plus il n'y avait pas grand monde. Bref, le kiff"),
+            post(time: "2 jours", image: "lib/Exercice Basique/image/post2.jpg", desc: "La montagne ca vous gagne", likes: 38),
+            post(time: "1 semaine", image: "lib/Exercice Basique/image/post3.jpg", desc: "Retour au boulot après plusieurs mois de confinement", likes: 12, comments: 3),
+            post(time: "5 ans", image: "lib/Exercice Basique/image/post4.jpg", desc: "Le boulot en remote c'est le pied: la preuve ceci sera mon bureau pour les prochaines semaines", likes: 235, comments: 88)
+          ],
+        ),
+      ),
     );
   }
 
-  //Sexion apropos de moi
-  Column AproposDeMoi(){
-    return Column(
-      children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Container(
-              margin: EdgeInsets.only(left: 18),
-              width: 150,
-              height: 20,
-                child:Text("A propos de moi",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 17)),
-            ),
-          ],
-        ),
-        Row(
-          children: [
-            IconButton(onPressed:(){}, icon: Icon(Icons.home)),
-            Text("Cocody-angré-mahou",style: TextStyle()),
-          ],
-        ),
-        Row(
-          children: [
-            IconButton(onPressed:(){}, icon: Icon(Icons.work)),
-            Text("Developpeur web",style: TextStyle()),
-          ],
-        ),
-        Row(
-          children: [
-            IconButton(onPressed:(){}, icon: Icon(Icons.favorite)),
-            Text("c'est compliqué"),
-          ],
-        )
-      ],
-    );
+  CircleAvatar myProfilePic(double radius) {
+    return CircleAvatar(radius: radius, backgroundImage: AssetImage("lib/Exercice Basique/image/photo profile.jpg"));
   }
 
-  //Sexion amie
-  Column Amis(){
-    return Column(
-      children: [
-        Row(
-          children: [
-            Container(
-              margin: EdgeInsets.only(left: 18),
-              width: 150,
-              height: 20,
-              child: Text("Amis",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 17)),
-            ),
-          ],
-        ),
-        SizedBox(height:8),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Column(
-              children: [
-                Container(
-                  width: MediaQuery.of(context).size.width-275,
-                  height: 158,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(18),
-                      image: DecorationImage(
-                          image: AssetImage("lib/Exercice Basique/image/rinnah.jpg"),
-                        fit: BoxFit.cover
-                      ),
-                  ),
-                ),
-                SizedBox(height: 10),
-                Text("Rinnah")
-              ],
-            ),
-            Column(
-              children: [
-                Container(
-                  width:MediaQuery.of(context).size.width-275,
-                  height:158,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(18),
-                    image: DecorationImage(
-                        image: AssetImage("lib/Exercice Basique/image/mariam.jpg")
-                    )
-                  ),
-                ),
-                SizedBox(height: 10),
-                Text("Mariam")
-              ],
-            ),
-            Column(
-              children: [
-                Container(
-                  width: MediaQuery.of(context).size.width-275,
-                  height:158,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(18),
-                      image: DecorationImage(
-                          image: AssetImage("lib/Exercice Basique/image/anne.jpg")
-                      )
-                  ),
-                ),
-                SizedBox(height: 10),
-                Text("Anne")
-              ],
-            ),
-          ],
-        )
-      ],
-    );
-  }
-
-  //Sexion post
-  Container Post({required String imageUser,required String imagePost,required String nomUser,required String temps,required String descriptionPost,required String likes,required String comments}){
+  Container buttonContainer({IconData? icon, String? text}) {
     return Container(
-      margin: EdgeInsets.all(10),
-      padding: EdgeInsets.only(left:10,right: 10),
-      width:MediaQuery.of(context).size.width,
-      height:388,
-      color: Colors.grey[300],
+      margin: EdgeInsets.only(left: 10, right: 10),
+      padding: EdgeInsets.all(15),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(20),
+          color: Colors.blue
+      ),
+      child: (icon == null)
+          ? Center(child: Text(text ?? "", style: TextStyle(color: Colors.white)))
+          : Icon(icon, color: Colors.white,),
+      height: 50,
+    );
+  }
+
+  Widget sectionTitleText(String text) {
+    return Padding(
+      padding: EdgeInsets.all(5),
+      child: Text(
+        text,
+        style: TextStyle(
+            fontWeight: FontWeight.w600,
+            fontSize: 18
+        ),
+      ),
+    );
+  }
+
+  Widget aboutRow({required IconData icon, required String text}) {
+    return Row(
+      children: [
+        Icon(icon),
+        Padding(
+          padding: EdgeInsets.all(5),
+          child: Text(text),
+        )
+      ],
+    );
+  }
+
+  Column friendsImage(String name, String imagePath, double width) {
+    return Column(
+      children: [
+        Container(
+          margin: EdgeInsets.all(5),
+          width: width,
+          height: width,
+          decoration: BoxDecoration(
+              image: DecorationImage(image: AssetImage(imagePath), fit: BoxFit.cover),
+              borderRadius: BorderRadius.circular(20),
+              boxShadow: [BoxShadow(color: Colors.grey)],
+              color: Colors.blue
+
+          ),
+
+        ),
+        Text(name),
+        Padding(padding: EdgeInsets.only(bottom: 5))
+      ],
+    );
+  }
+
+  Row allFriends(double width) {
+    Map<String, String> friends = {
+      "José": "lib/Exercice Basique/image/anne.jpg",
+      "Maggie": "lib/Exercice Basique/image/mariam.jpg",
+      "Douggy": "lib/Exercice Basique/image/rinnah.jpg"
+    };
+    List<Widget> children = [];
+    friends.forEach((name, imagePath) {
+      children.add(friendsImage(name, imagePath, width));
+    });
+    return Row(
+      children: children,
+      mainAxisSize: MainAxisSize.max,
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    );
+  }
+
+  Container post({required String time , required String image, required String desc, int likes = 0, int comments = 0}) {
+    return Container(
+      margin: EdgeInsets.only(top: 8, left: 3, right: 3),
+      padding: EdgeInsets.all(10),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20),
+        color: Color.fromRGBO(225, 225, 225, 1),
+      ),
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Row(
             children: [
-              CircleAvatar(
-                radius: 28,
-                backgroundImage: AssetImage(imageUser),
-              ),
-              SizedBox(width:8),
-              Text(nomUser),
+              myProfilePic(20),
+              Padding(padding: EdgeInsets.only(left: 8)),
+              Text("Matthieu Codabee"),
               Spacer(),
-              Text(temps)
+              timeText(time)
             ],
           ),
-          Container(
-            width: MediaQuery.of(context).size.width,
-            height:230,
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage(imagePost),
-                fit: BoxFit.cover
-              )
-            ),
+          Padding(
+              padding: EdgeInsets.only(top: 8, bottom: 8),
+              child: Image.asset(image, fit: BoxFit.cover,)
           ),
-          Text(descriptionPost,textAlign: TextAlign.center,),
+          Text(desc,
+            style: TextStyle(
+                color: Colors.blueAccent),
+            textAlign: TextAlign.center,
+
+          ),
+          Divider(),
           Row(
+            mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               Icon(Icons.favorite),
-              Text(likes),
-              Icon(Icons.comment),
-              Text(comments),
+              Text("$likes Likes"),
+              Icon(Icons.message),
+              Text("$comments Commentaires")
             ],
           )
+
         ],
       ),
     );
   }
 
+  Text timeText(String time) {
+    return Text("Il y a $time", style: TextStyle(color: Colors.blue),);
+  }
 }

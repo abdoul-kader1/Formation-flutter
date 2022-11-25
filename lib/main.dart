@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:formation_flutter/Exercice%20Basique/ExerciceBasique.dart';
-
+import 'Exercice Basique/ExerciceBasique.dart';
 import 'Exercice widget interactifs/ExerciceWidgetInteractif.dart';
-
 void main() {
   runApp(MyApp());
 }
@@ -33,7 +31,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   List Exercices=[
-    ExerciceBasique(),ExerciceWidgetInteractif()
+    BasicPage(title: "Exercie widget Basique"),ExerciceWidgetInteractif()
   ];
 
   @override

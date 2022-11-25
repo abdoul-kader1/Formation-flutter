@@ -4,6 +4,8 @@ import '../main.dart';
 
 class ExerciceWidgetInteractif extends StatefulWidget{
   String title= "Exercice Widget interactif";
+
+  ExerciceWidgetInteractif({super.key});
   @override
   State<StatefulWidget> createState() {
     return _ExerciceWidgetInteractif();

@@ -70,10 +70,6 @@ flutter:
     - lib/Exercice Basique/image/post2.jpg
     - lib/Exercice Basique/image/post3.jpg
     - lib/Exercice Basique/image/post4.jpg
-    - lib/Exercice Basique/image/utilisateur1.jpg
-    - lib/Exercice Basique/image/utilisateur2.jpg
-    - lib/Exercice Basique/image/utilisateur3.jpg
-    - lib/Exercice Basique/image/utilisateur4.jpg
     - lib/logo flutter.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
