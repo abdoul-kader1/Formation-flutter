@@ -147,45 +147,15 @@ class _ExerciceWidgetInteractif extends State<ExerciceWidgetInteractif>{
   Container modifierinfo(){
     return Container(
       //color: Colors.deepPurple,
-      height: 450,
+      height: 420,
       padding: EdgeInsets.all(20),
       child:Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
-          TextField(
-            onChanged: (value){
-              setState(() {
-                personne.nom=value;
-              });
-            },
-            decoration: InputDecoration(
-              hintText: personne.nom,
-                border: OutlineInputBorder(),
-            ),
-          ),
-          TextField(
-          onChanged: (value){
-                 setState(() {
-                   personne.prenom=value;
-                });
-          },
-            decoration: InputDecoration(
-                hintText: personne.prenom,
-                border: OutlineInputBorder()
-            ),
-          ),
-          TextField(
-            onChanged: (value){
-              setState(() {
-                personne.secret=value;
-              });
-            },
-            obscureText: true,
-            decoration: InputDecoration(
-                hintText: "Dite nous un secret",
-                border: OutlineInputBorder()
-            ),
-          ),
+          mesTextfield(choix:1,infoPersonne:personne.nom,cacher:false,typeDechamps:TextInputType.text),
+          mesTextfield(choix:2,infoPersonne:personne.prenom,cacher:false,typeDechamps:TextInputType.text),
+          mesTextfield(choix:3,infoPersonne:personne.age.toString(),cacher:false,typeDechamps:TextInputType.number),
+          mesTextfield(choix:4,infoPersonne:"Mon secret",cacher:true,typeDechamps:TextInputType.text),
           Row(
             children: [
               Text("Genre ${personne.genre(genres)}"),
@@ -219,17 +189,38 @@ class _ExerciceWidgetInteractif extends State<ExerciceWidgetInteractif>{
              )
             ],
           ),
-          ElevatedButton(
-            style: ElevatedButton.styleFrom(
-              padding: EdgeInsets.symmetric(horizontal: 50),
-              backgroundColor: Colors.deepPurple
-            ),
-              onPressed:choisirAge
-              , child:Text("Choisir son age")
-          )
         ],
       ),
     );
+  }
+
+  //fonction pour les champs d'entrer
+  TextField mesTextfield({required int choix, required String infoPersonne,required bool cacher,required TextInputType typeDechamps}){
+    return  TextField(
+      keyboardType:typeDechamps,
+      obscureText: cacher,
+      onChanged: (value){
+        setState(() {
+          miseAjour(choix,value);
+        });
+      },
+      decoration: InputDecoration(
+        hintText: infoPersonne,
+        border: OutlineInputBorder(),
+      ),
+    );
+  }
+  //Mise a jour des champs
+  miseAjour(int nombres,String valeur){
+    if(nombres==1){
+      personne.nom=valeur;
+    }else if(nombres==2){
+      personne.prenom=valeur;
+    }else if(nombres==3){
+      personne.age=int.parse(valeur);
+    }else if(nombres==4){
+      personne.secret=valeur;
+    }
   }
   //container mes hobbies
   Padding mesHobbies(){
@@ -287,16 +278,5 @@ class _ExerciceWidgetInteractif extends State<ExerciceWidgetInteractif>{
            children:colonne,
     ) ,
     );
-  }
-  //choisir son age
-  choisirAge(){
-    return showDatePicker(
-        context: context, 
-        initialDate: DateTime.now(),
-        firstDate: DateTime(1978), 
-        lastDate:DateTime(2050)
-    ).then((value) => ({
-      print(value)
-    }));
   }
 }
