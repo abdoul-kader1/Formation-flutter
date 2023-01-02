@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'Exercice Basique/ExerciceBasique.dart';
 import 'Exercice widget interactifs/ExerciceWidgetInteractif.dart';
+import 'ajouter_appareil_photo/ajouter_apprareil_photo.dart';
 void main() {
   runApp(MyApp());
 }
@@ -31,7 +32,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   List Exercices=[
-    BasicPage(title: "Exercie widget Basique"),ExerciceWidgetInteractif()
+    BasicPage(title: "Exercie widget Basique"),ExerciceWidgetInteractif(),AjouterAppareilPhoto()
   ];
 
   @override
