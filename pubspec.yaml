@@ -61,6 +61,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+    #Exercice basique
     - lib/Exercice Basique/image/photo couverture.jpg
     - lib/Exercice Basique/image/photo profile.jpg
     - lib/Exercice Basique/image/rinnah.jpg
@@ -71,6 +72,20 @@ flutter:
     - lib/Exercice Basique/image/post3.jpg
     - lib/Exercice Basique/image/post4.jpg
     - lib/logo flutter.png
+    #Exercice pop up et navigation
+    - lib/exercice_pop_up_et_navigation/assets_quizz/belgique.JPG
+    - lib/exercice_pop_up_et_navigation/assets_quizz/buche.jpg
+    - lib/exercice_pop_up_et_navigation/assets_quizz/commodore.jpg
+    - lib/exercice_pop_up_et_navigation/assets_quizz/cover.jpg
+    - lib/exercice_pop_up_et_navigation/assets_quizz/eagle.jpg
+    - lib/exercice_pop_up_et_navigation/assets_quizz/faux.jpg
+    - lib/exercice_pop_up_et_navigation/assets_quizz/lune.jpg
+    - lib/exercice_pop_up_et_navigation/assets_quizz/nyctalope.jpg
+    - lib/exercice_pop_up_et_navigation/assets_quizz/pharaon.jpg
+    - lib/exercice_pop_up_et_navigation/assets_quizz/pirate.png
+    - lib/exercice_pop_up_et_navigation/assets_quizz/russie.jpg
+    - lib/exercice_pop_up_et_navigation/assets_quizz/tintin.jpg
+    - lib/exercice_pop_up_et_navigation/assets_quizz/vrai.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
