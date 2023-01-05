@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:formation_flutter/Exercice%20widget%20interactifs/personnes.dart';
 
-import '../main.dart';
-
 class ExerciceWidgetInteractif extends StatefulWidget{
   ExerciceWidgetInteractif({super.key});
   String title= "Exercice Widget interactif";
@@ -70,17 +68,7 @@ class _ExerciceWidgetInteractif extends State<ExerciceWidgetInteractif>{
         appBar: AppBar(
           backgroundColor: Colors.deepPurple,
           title: Text(widget.title),
-            leading: IconButton(
-              icon: Icon(Icons.arrow_back),
-              onPressed: (){
-                Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(builder:(contextes){
-                      return MyApp();
-                    })
-                );
-              },
-            )
+
         ),
         body: SingleChildScrollView(
           child: Column(

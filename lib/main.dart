@@ -52,11 +52,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 backgroundImage: AssetImage("lib/logo flutter.png"),
               ),
               onTap: (){
-                Navigator.pushReplacement(
-                  contexte,
-                  MaterialPageRoute(builder:(contextes){
+                Navigator.of(context).push(
+                    MaterialPageRoute(builder:(ctx){
                       return  Exercices[i];
-                  })
+                    })
                 );
               },
             );
@@ -65,3 +64,4 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 }
+

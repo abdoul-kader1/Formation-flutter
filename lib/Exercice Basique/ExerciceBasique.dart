@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:formation_flutter/main.dart';
 
 
 class BasicPage extends StatelessWidget {
@@ -12,17 +11,6 @@ class BasicPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text("Facebook Profile"),
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back),
-            onPressed: (){
-              Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(builder:(contextes){
-                    return MyApp();
-                  })
-              );
-            },
-          )
       ),
       body: SingleChildScrollView(
         child: Column(
