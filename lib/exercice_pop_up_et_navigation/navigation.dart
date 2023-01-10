@@ -1,6 +1,8 @@
 import 'dart:async';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:formation_flutter/adapter_platform/android_ios.dart';
 import 'package:formation_flutter/exercice_pop_up_et_navigation/pisteDeJeu.dart';
 
 
@@ -17,18 +19,16 @@ class PopUpEtNavigationState  extends State<PopUpEtNavigation>{
 
   @override
   Widget build(BuildContext context) {
-   return  Scaffold(
-     appBar: AppBar(
-       title: const Text("Quizz flutter"),
-       backgroundColor:couleurPrincipale,
-     ),
-     body:Center(
+   return AndroidIos().androidIosScaffold(
+       couleur:couleurPrincipale,
+       titre: const Text("Quizz flutter"),
+       corps: Center(
          child: Card(
            elevation: 20,
            child: Container(
              padding: const EdgeInsets.symmetric(vertical:6),
              width: 350,
-             height: 360,
+             height: 365,
              color: Colors.deepOrange.shade200,
              child: Column(
                children: [
@@ -38,30 +38,31 @@ class PopUpEtNavigationState  extends State<PopUpEtNavigation>{
                      color: Colors.black,
                      child:Image.asset("lib/exercice_pop_up_et_navigation/assets_quizz/cover.jpg",fit: BoxFit.cover)
                  ),
-                 ElevatedButton(
+                 const Spacer(),
+                 AndroidIos().boutton(
+                     titre:"Commencer le quizz",
                      style: ElevatedButton.styleFrom(
-                         backgroundColor:couleurPrincipale
+                     backgroundColor:couleurPrincipale
                      ),
-                     onPressed:()async{
+                     onPress:()async{
                        sncakBar(context: context);
                        message();
-                       await Future.delayed(Duration(seconds:6));
+                       await Future.delayed(const Duration(seconds:6));
                        for(int i=1;i<=5;i++){
                          Navigator.pop(context);
                        }
                        Navigator.of(context).pushReplacement(
                            MaterialPageRoute(builder:(contextes){
-                             return PisteDeJeu();
+                             return const PisteDeJeu();
                            })
                        );
-                     },
-                     child:const Text("Commencer le quizz")
+                     }
                  ),
                ],
              ),
            ),
-             ),
-       ),
+         ),
+       )
    );
   }
   
@@ -81,7 +82,7 @@ void sncakBar({required BuildContext context}){
 //fonction pour afficher un pop up
   Future<void>message()async{
     for(int i=1;i<=5;i++){
-      await Future.delayed(Duration(seconds:1));
+      await Future.delayed(const Duration(seconds:1));
       setState(() {
         temps=i;
       });
@@ -89,17 +90,17 @@ void sncakBar({required BuildContext context}){
         barrierColor:(i==1)?Colors.black54:Colors.transparent,
         context: context,
         builder:(ctx){
-          return SimpleDialog(
-            contentPadding:EdgeInsets.all(30),
+          return AndroidIos().alertDialogueMaterialCupertino(
+              contentPadding:const EdgeInsets.all(30),
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  CircularProgressIndicator(),
-                  Text("Patienter dans ${temps} seconde${accords(i)}"),
+                  const CircularProgressIndicator(),
+                  Text("Patienter dans $temps seconde${accords(i)}"),
                 ],
               )
-            ],
+            ]
           );
         }
       );

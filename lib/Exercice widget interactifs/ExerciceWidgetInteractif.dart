@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:formation_flutter/Exercice%20widget%20interactifs/personnes.dart';
+import 'package:formation_flutter/adapter_platform/android_ios.dart';
 
 class ExerciceWidgetInteractif extends StatefulWidget{
   ExerciceWidgetInteractif({super.key});
@@ -64,13 +65,10 @@ class _ExerciceWidgetInteractif extends State<ExerciceWidgetInteractif>{
   //Les méthodes
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.deepPurple,
-          title: Text(widget.title),
-
-        ),
-        body: SingleChildScrollView(
+    return AndroidIos().androidIosScaffold(
+        couleur:Colors.deepPurple,
+        titre:Text(widget.title),
+        corps: SingleChildScrollView(
           child: Column(
             children: [
               tableauDeBord(personne: personne),
@@ -86,7 +84,7 @@ class _ExerciceWidgetInteractif extends State<ExerciceWidgetInteractif>{
             ],
           ),
         )
-      );
+    );
   }
 
   //tableau de bord
@@ -113,16 +111,16 @@ class _ExerciceWidgetInteractif extends State<ExerciceWidgetInteractif>{
               children:personne.hobbiee(hobbies),
             ),
             Text("Lange de programmation preferer : ${personne.langagePreferer(langageProgrammation,groupValue)}"),
-            ElevatedButton(
-              style: ElevatedButton.styleFrom(
+            AndroidIos().boutton(
+                titre:montreSecret==false?"Montre mon secret":"Cacher mon secret",
+                style:ElevatedButton.styleFrom(
                 backgroundColor: Colors.deepPurple
-              ),
-                onPressed:(){
-                setState(() {
-                  montreSecret=!montreSecret;
-                });
-                },
-                child: Text(montreSecret==false?"Montre mon secret":"Cacher mon secret")
+                ),
+                onPress:(){
+                  setState(() {
+                    montreSecret=!montreSecret;
+                  });
+                }
             ),
             Text(montreSecret==false?"":personne.secret)
           ],
@@ -138,43 +136,43 @@ class _ExerciceWidgetInteractif extends State<ExerciceWidgetInteractif>{
       height: 420,
       padding: EdgeInsets.all(20),
       child:Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          mesTextfield(choix:1,infoPersonne:personne.nom,cacher:false,typeDechamps:TextInputType.text),
-          mesTextfield(choix:2,infoPersonne:personne.prenom,cacher:false,typeDechamps:TextInputType.text),
-          mesTextfield(choix:3,infoPersonne:personne.age.toString(),cacher:false,typeDechamps:TextInputType.number),
+          mesTextfield(choix:1,infoPersonne:personne.nom,cacher:false,typeDechamps:TextInputType.text),SizedBox(height: 12),
+          mesTextfield(choix:2,infoPersonne:personne.prenom,cacher:false,typeDechamps:TextInputType.text),SizedBox(height: 12),
+          mesTextfield(choix:3,infoPersonne:personne.age.toString(),cacher:false,typeDechamps:TextInputType.number),SizedBox(height: 12),
           mesTextfield(choix:4,infoPersonne:"Mon secret",cacher:true,typeDechamps:TextInputType.text),
           Row(
             children: [
               Text("Genre ${personne.genre(genres)}"),
               Spacer(),
-              Switch(
-                activeColor: Colors.deepPurple,
-                  value:genres,
-                  onChanged: (value){
+              AndroidIos().switchMaterailCupertino(
+                  couleur: Colors.deepPurple,
+                  valeur: genres,
+                  onChange:(value){
                     setState((){
                       genres=value;
                     });
                   }
-              )
+              ),
             ],
           ),
           Row(
             children: [
               Text("Taille ${personne.taille.round()} cm"),
               Spacer(),
-             Slider(
-               activeColor: Colors.deepPurple,
-               inactiveColor: Colors.deepPurple.shade200,
+             AndroidIos().sliderMaterialCupertino(
+               valeur:personne.taille,
+               couleurActive: Colors.deepPurple,
                min: 150,
                max: 200,
-               value: personne.taille,
-                 onChanged:(value){
-                 setState((){
-                   personne.taille=value;
-                 });
-                 }
-             )
+               couleurinActive:Colors.deepPurple.shade200,
+               onChange:(value){
+                  setState((){
+                  personne.taille=value;
+                  });
+               }
+             ),
             ],
           ),
         ],
@@ -183,19 +181,19 @@ class _ExerciceWidgetInteractif extends State<ExerciceWidgetInteractif>{
   }
 
   //fonction pour les champs d'entrer
-  TextField mesTextfield({required int choix, required String infoPersonne,required bool cacher,required TextInputType typeDechamps}){
-    return  TextField(
-      keyboardType:typeDechamps,
-      obscureText: cacher,
-      onChanged: (value){
-        setState(() {
-          miseAjour(choix,value);
-        });
-      },
-      decoration: InputDecoration(
-        hintText: infoPersonne,
-        border: OutlineInputBorder(),
-      ),
+    mesTextfield({required int choix, required String infoPersonne,required bool cacher,required TextInputType typeDechamps}){
+    return AndroidIos().textfieldMaterialCupertion(
+        placeholder:infoPersonne,
+        typeInput:typeDechamps,
+        onChange:(value){
+          setState(() {
+            miseAjour(choix,value);
+          });
+        },
+        decorationInput:InputDecoration(
+          hintText: infoPersonne,
+          border: OutlineInputBorder(),
+        )
     );
   }
   //Mise a jour des champs
@@ -219,14 +217,16 @@ class _ExerciceWidgetInteractif extends State<ExerciceWidgetInteractif>{
         children: [
           Text(key),
           Spacer(),
-          Checkbox(
-            activeColor: Colors.deepPurple,
-              value:value,
-              onChanged:(change){
-                setState(() {
-                  hobbies[key]=change!;
-                });
-              })
+          Material(
+            child:Checkbox(
+                activeColor: Colors.deepPurple,
+                value:value,
+                onChanged:(change){
+                  setState(() {
+                    hobbies[key]=change!;
+                  });
+                }),
+          ),
         ],
       );
       line.add(r);
@@ -245,16 +245,18 @@ class _ExerciceWidgetInteractif extends State<ExerciceWidgetInteractif>{
       Column c=Column(
         children: [
           Text(key),
-          Radio(
-            activeColor: Colors.deepPurple,
-              value: value,
-              groupValue:groupValue,
-              onChanged:(val){
-                setState((){
-                  groupValue=val!;
-                });
-              }
-          )
+          Material(
+            child:Radio(
+                activeColor: Colors.deepPurple,
+                value: value,
+                groupValue:groupValue,
+                onChanged:(val){
+                  setState((){
+                    groupValue=val!;
+                  });
+                }
+            ),
+          ),
         ],
       );
       colonne.add(c);
