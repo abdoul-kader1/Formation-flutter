@@ -2,18 +2,19 @@ import 'package:flutter/material.dart';
 import 'Exercice Basique/ExerciceBasique.dart';
 import 'Exercice widget interactifs/ExerciceWidgetInteractif.dart';
 import 'adapter_platform/android_ios.dart';
+import 'exercice_liste_et_grille_marseille/liste_et_grille.dart';
 import 'exercice_pop_up_et_navigation/navigation.dart';
+
 void main() {
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
+
   @override
   Widget build(BuildContext context) {
-    return AndroidIos().materialCupertinoApp(
-        home:const MyHomePage(title: "les exercices")
-    );
+    return AndroidIos().materialCupertinoApp(home: const MyHomePage(title: "les exercices"));
   }
 }
 
@@ -27,38 +28,116 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  List exercices=[
-    const BasicPage(title: "Exercie widget Basique"),ExerciceWidgetInteractif(), const PopUpEtNavigation()
+  List exercices = [
+    BasicPage(title: "Exercie widget Basique"),
+    ExerciceWidgetInteractif(),
+    PopUpEtNavigation(),
+    ListeEtGrille(),
   ];
+
+  bool vue=true;
 
   @override
   Widget build(BuildContext context) {
+    final orientation=MediaQuery.of(context).orientation;
     return AndroidIos().androidIosScaffold(
-        titre:Text(widget.title),
-        corps: ListView.builder(
-          itemCount: exercices.length,
-          itemBuilder: (contexte,i){
-            return Material(
+        action:[
+          IconButton(
+              onPressed:(){
+                setState(() {
+                  vue=!vue;
+                });
+              },
+              icon:Icon((vue)?Icons.grid_4x4_sharp:Icons.list))
+        ],
+        titre: Text(widget.title),
+        corps: (vue)?listView():grilleView(orientations: orientation)
+    );
+  }
+
+  // fonction qui retourne les exercices sous forme de liste
+  Widget listView(){
+    return ListView.separated(
+        separatorBuilder:(contexte,i)=>const Divider(),
+        itemCount:exercices.length,
+        itemBuilder: (contexte, i) {
+          final contenu=exercices[i];
+          return Material(
+            color: Colors.transparent,
+            child: Dismissible(
+              direction: DismissDirection.endToStart,
+              background: Container(
+                padding: EdgeInsets.only(right: 20),
+                color: Colors.red,
+                child:Row(
+                  children: [
+                    Spacer(),
+                    Icon(Icons.delete),
+                  ],
+                ),
+              ),
+              key: Key(contenu.title),
+              onDismissed: (direction){
+                setState(() {
+                  exercices.removeAt(i);
+                });
+              },
               child:ListTile(
-                title: Text("${exercices[i].title}"),
-                leading: Text("${i+1}"),
+                title: Text("${contenu.title}"),
+                leading: Text("${i + 1}"),
                 trailing: const CircleAvatar(
                     radius: 18,
                     backgroundImage: AssetImage("lib/logo flutter.png")
                 ),
-                onTap: (){
-                  Navigator.of(context).push(
-                      MaterialPageRoute(builder: (ctx){
-                        return exercices[i] ;
-                      })
-                  );
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (ctx) {
+                    return contenu;
+                  }));
                 },
               ) ,
             )
-              ;
-          },
-        )
+            ,
+          );
+        }
     );
   }
-}
+  //fonction qui retourne les exercices sous forme de grille
+  Widget grilleView({required Orientation orientations}){
+    return GridView.builder(
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount:orientations==Orientation.portrait?2:3),
+        itemCount: exercices.length,
+        itemBuilder: (contexte,i){
+          final contenu=exercices[i];
+          return InkWell(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Card(
+                    elevation: 20,
+                    child:Container(
+                      color: Colors.blueGrey.shade200,
+                      padding: EdgeInsets.all(6),
+                      width: 200,
+                      height: 140,
+                      child:Image.asset(contenu.img,fit: BoxFit.cover),
+                    )
+                ),
+                Text("${contenu.title}",style: TextStyle(fontWeight: FontWeight.bold),)
+              ],
+            ),
+            onTap: (){
+              Navigator.of(context).push(MaterialPageRoute(builder: (ctx) {
+                return contenu;
+              }));
+            },
+            onDoubleTap:(){
+              setState(() {
+                exercices.removeAt(i);
+              });
+            },
+          );
+        }
+    );
+  }
 
+}

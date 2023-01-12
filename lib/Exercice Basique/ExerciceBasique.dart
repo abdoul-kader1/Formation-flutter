@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 
 class BasicPage extends StatelessWidget {
   final String title;
-  const BasicPage({ required this.title,super.key});
+  String img ="lib/image menu/widget_basique.png";
+   BasicPage({ required this.title,super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -7,8 +7,11 @@ import 'package:formation_flutter/exercice_pop_up_et_navigation/pisteDeJeu.dart'
 
 
 class PopUpEtNavigation extends StatefulWidget{
+
   final String title ="Pop up et navigation";
-  const PopUpEtNavigation({super.key});
+  String img="lib/image menu/widget pop up.png";
+
+  PopUpEtNavigation({super.key});
   @override
   PopUpEtNavigationState createState()=>PopUpEtNavigationState ();
 }

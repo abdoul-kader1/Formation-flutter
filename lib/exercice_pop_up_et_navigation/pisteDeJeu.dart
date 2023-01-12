@@ -139,7 +139,7 @@ class PisteDeJeuState extends State<PisteDeJeu>{
                     Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(builder:(ctxx){
-                          return const PopUpEtNavigation();
+                          return PopUpEtNavigation();
                         })
                     );
                   },

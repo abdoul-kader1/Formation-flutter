@@ -5,7 +5,7 @@ import 'package:formation_flutter/adapter_platform/android_ios.dart';
 class ExerciceWidgetInteractif extends StatefulWidget{
   ExerciceWidgetInteractif({super.key});
   String title= "Exercice Widget interactif";
-
+  String img ="lib/image menu/widget interactif.png";
   @override
   State<StatefulWidget> createState() {
     return _ExerciceWidgetInteractif();

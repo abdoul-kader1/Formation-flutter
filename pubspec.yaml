@@ -86,6 +86,24 @@ flutter:
     - lib/exercice_pop_up_et_navigation/assets_quizz/russie.jpg
     - lib/exercice_pop_up_et_navigation/assets_quizz/tintin.jpg
     - lib/exercice_pop_up_et_navigation/assets_quizz/vrai.jpg
+    #les images du menu
+    - lib/image menu/widget grille et liste.png
+    - lib/image menu/widget interactif.png
+    - lib/image menu/widget pop up.png
+    - lib/image menu/widget_basique.png
+    #image de l'exercice list et grid
+    - lib/exercice_liste_et_grille_marseille/assets ex list/auffes.jpg
+    - lib/exercice_liste_et_grille_marseille/assets ex list/borely.jpg
+    - lib/exercice_liste_et_grille_marseille/assets ex list/bouillabaisse.jpg
+    - lib/exercice_liste_et_grille_marseille/assets ex list/calanques.jpg
+    - lib/exercice_liste_et_grille_marseille/assets ex list/canebiere.jpg
+    - lib/exercice_liste_et_grille_marseille/assets ex list/friche.jpg
+    - lib/exercice_liste_et_grille_marseille/assets ex list/goudes.jpg
+    - lib/exercice_liste_et_grille_marseille/assets ex list/if.jpg
+    - lib/exercice_liste_et_grille_marseille/assets ex list/mucem.jpg
+    - lib/exercice_liste_et_grille_marseille/assets ex list/notreDame.jpg
+    - lib/exercice_liste_et_grille_marseille/assets ex list/panier.jpg
+    - lib/exercice_liste_et_grille_marseille/assets ex list/port.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
