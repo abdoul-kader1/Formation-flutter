@@ -36,6 +36,8 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+  webfeed: ^0.7.0
+  http: ^0.13.5
 
 dev_dependencies:
   flutter_test:
@@ -91,6 +93,7 @@ flutter:
     - lib/image menu/widget interactif.png
     - lib/image menu/widget pop up.png
     - lib/image menu/widget_basique.png
+    - lib/image menu/flux-rss-programmation.png
     #image de l'exercice list et grid
     - lib/exercice_liste_et_grille_marseille/assets ex list/auffes.jpg
     - lib/exercice_liste_et_grille_marseille/assets ex list/borely.jpg

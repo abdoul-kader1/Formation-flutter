@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'Exercice Basique/ExerciceBasique.dart';
 import 'Exercice widget interactifs/ExerciceWidgetInteractif.dart';
 import 'adapter_platform/android_ios.dart';
+import 'exercice_flux_rss/flux_rss.dart';
 import 'exercice_liste_et_grille_marseille/liste_et_grille.dart';
 import 'exercice_pop_up_et_navigation/navigation.dart';
 
@@ -33,6 +34,7 @@ class _MyHomePageState extends State<MyHomePage> {
     ExerciceWidgetInteractif(),
     PopUpEtNavigation(),
     ListeEtGrille(),
+    PageFluxRss()
   ];
 
   bool vue=true;
@@ -41,6 +43,15 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     final orientation=MediaQuery.of(context).orientation;
     return AndroidIos().androidIosScaffold(
+        trailing: Material(
+          child: IconButton(
+              onPressed:(){
+                setState(() {
+                  vue=!vue;
+                });
+              },
+              icon:Icon((vue)?Icons.grid_4x4_sharp:Icons.list)),
+        ),
         action:[
           IconButton(
               onPressed:(){
@@ -108,33 +119,35 @@ class _MyHomePageState extends State<MyHomePage> {
         itemCount: exercices.length,
         itemBuilder: (contexte,i){
           final contenu=exercices[i];
-          return InkWell(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                Card(
-                    elevation: 20,
-                    child:Container(
-                      color: Colors.blueGrey.shade200,
-                      padding: EdgeInsets.all(6),
-                      width: 200,
-                      height: 140,
-                      child:Image.asset(contenu.img,fit: BoxFit.cover),
-                    )
-                ),
-                Text("${contenu.title}",style: TextStyle(fontWeight: FontWeight.bold),)
-              ],
+          return Material(
+            child: InkWell(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Card(
+                      elevation: 20,
+                      child:Container(
+                        color: Colors.blueGrey.shade200,
+                        padding: EdgeInsets.all(6),
+                        width: 200,
+                        height: 140,
+                        child:Image.asset(contenu.img,fit: BoxFit.cover),
+                      )
+                  ),
+                  Text("${contenu.title}",style: TextStyle(fontWeight: FontWeight.bold),)
+                ],
+              ),
+              onTap: (){
+                Navigator.of(context).push(MaterialPageRoute(builder: (ctx) {
+                  return contenu;
+                }));
+              },
+              onDoubleTap:(){
+                setState(() {
+                  exercices.removeAt(i);
+                });
+              },
             ),
-            onTap: (){
-              Navigator.of(context).push(MaterialPageRoute(builder: (ctx) {
-                return contenu;
-              }));
-            },
-            onDoubleTap:(){
-              setState(() {
-                exercices.removeAt(i);
-              });
-            },
           );
         }
     );

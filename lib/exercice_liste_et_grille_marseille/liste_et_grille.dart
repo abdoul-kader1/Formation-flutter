@@ -92,24 +92,26 @@ class ListeEtGrilleState extends State<ListeEtGrille>{
         gridDelegate:SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4),
         itemBuilder: (contexte,i){
           final contenu=ville[i];
-          return InkWell(
-            child: Card(
-              elevation: 8,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Container(
-                    width: 180,
-                    height: 150,
-                    child:Image.asset(contenu.img,fit: BoxFit.cover),
-                  ),
-                  Text(contenu.nom)
-                ],
+          return Material(
+            child:InkWell(
+              child: Card(
+                elevation: 8,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Container(
+                      width: 180,
+                      height: 150,
+                      child:Image.asset(contenu.img,fit: BoxFit.cover),
+                    ),
+                    Text(contenu.nom)
+                  ],
+                ),
               ),
-            ),
-            onTap: (){
-              pagination(contenu);
-            },
+              onTap: (){
+                pagination(contenu);
+              },
+            )
           );
         },
       itemCount: ville.length,
