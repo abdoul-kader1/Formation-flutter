@@ -1,11 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:formation_flutter/adapter_platform/android_ios.dart';
-import 'package:http/http.dart' as http;
-import 'package:webfeed/domain/rss_feed.dart';
-import 'package:intl/intl.dart';
+import 'package:formation_flutter/exercice_flux_rss/rss_type.dart';
 
-import 'article.dart';
+import 'controlleur.dart';
+
 
 class PageFluxRss extends StatefulWidget{
 
@@ -20,58 +19,27 @@ class PageFluxRss extends StatefulWidget{
 
 class PageFluxRssState extends State<PageFluxRss>{
 
-   List<Article>article=[];
-
+  bool article=false;
+  List<RssType>mesFluxRss=[
+    RssType(type: 'Sport',url: "https://www.francebleu.fr/rss/sports.xml"),
+    RssType(type: 'Info',url: "https://www.francebleu.fr/rss/infos.xml"),
+    RssType(type: 'Culture',url: "https://www.francebleu.fr/rss/culture.xml")
+  ];
 
   @override
   Widget build(BuildContext context) {
-   return AndroidIos().androidIosScaffold(
-       titre: Text("Flux RSS france bleu"),
-       corps:Center(
-         child: (article.length==0)?Text("nombre D'articles : ${article.length}")
-             :GridView.builder(
-             gridDelegate:SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount:1),
-             itemCount: article.length,
-             itemBuilder:(contexte,i){
-               final unArticle=article[i];
-               return Material(
-                 child:Card(
-                     elevation: 10,
-                     child:Column(
-                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                       children: [
-                         Image.network(unArticle.imgUrl),
-                         Text("Titre : ${unArticle.title}",textAlign: TextAlign.center),
-                         Text("Publié le : ${formaterDate(unArticle.dateDePublication)}"),
-                         Text("Description : ${unArticle.description}",textAlign: TextAlign.center,)
-                       ],
-                     )
-                 ),
-               );
-             },
-         ),
+   return DefaultTabController(
+       length:mesFluxRss.length,
+       child: AndroidIos().androidIosScaffold(
+           tabar: TabBar(tabs:mesFluxRss.map((element) =>Tab(text: element.type)).toList()),
+           titre: Text("Flux RSS france bleu"),
+           corps:Center(
+               child:TabBarView(
+                 children:mesFluxRss.map((element) =>LeControlleur(element.url)).toList(),
+               )
+           ),
        ),
-     floatingActionButton: FloatingActionButton(onPressed:recuperFluxRss,child:Icon(Icons.remove_red_eye))
    );
   }
-   //function pour récupérer le flux rss de fraternité matin option sport
-   recuperFluxRss()async{
-     String url="https://www.francebleu.fr/rss/sports.xml";
-     final conversionUrl= Uri.parse(url);
-     final client=http.Client();
-     final  requeteClient= await client.get(conversionUrl);
-     final fluxRss=RssFeed.parse(requeteClient.body);
-     final items=fluxRss.items;
-     if(items!=null){
-       setState(() {
-         article=items.map((item)=>Article(item:item)).toList();
-       });
-     }
-   }
-   //fonction pour formater une date
-   formaterDate(DateTime laDate){
-    DateFormat formatDeLaDate= DateFormat.yMMMEd();
-    String changeFormat=formatDeLaDate.format(laDate);
-    return changeFormat;
-   }
+
 }
