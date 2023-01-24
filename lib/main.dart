@@ -3,6 +3,7 @@ import 'Exercice Basique/ExerciceBasique.dart';
 import 'Exercice widget interactifs/ExerciceWidgetInteractif.dart';
 import 'adapter_platform/android_ios.dart';
 import 'exercice_flux_rss/flux_rss.dart';
+import 'exercice_lecteur_video/main.dart';
 import 'exercice_liste_et_grille_marseille/liste_et_grille.dart';
 import 'exercice_pop_up_et_navigation/navigation.dart';
 
@@ -15,7 +16,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AndroidIos().materialCupertinoApp(home: const MyHomePage(title: "les exercices"));
+    return AndroidIos().materialCupertinoApp(
+        home: const MyHomePage(title: "les exercices")
+    );
   }
 }
 
@@ -34,7 +37,8 @@ class _MyHomePageState extends State<MyHomePage> {
     ExerciceWidgetInteractif(),
     PopUpEtNavigation(),
     ListeEtGrille(),
-    PageFluxRss()
+    PageFluxRss(),
+    Main()
   ];
 
   bool vue=true;

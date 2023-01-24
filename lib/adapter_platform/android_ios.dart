@@ -17,6 +17,7 @@ class AndroidIos{
       debugShowCheckedModeBanner: false,
       title: 'Formation flutter',
       home: home,
+      darkTheme:ThemeData.dark(),
     );
   }
 
