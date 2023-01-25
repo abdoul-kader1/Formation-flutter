@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'Exercice Basique/ExerciceBasique.dart';
 import 'Exercice widget interactifs/ExerciceWidgetInteractif.dart';
 import 'adapter_platform/android_ios.dart';
+import 'exercice_drawers/main.dart';
 import 'exercice_flux_rss/flux_rss.dart';
 import 'exercice_lecteur_video/main.dart';
 import 'exercice_liste_et_grille_marseille/liste_et_grille.dart';
@@ -38,7 +39,8 @@ class _MyHomePageState extends State<MyHomePage> {
     PopUpEtNavigation(),
     ListeEtGrille(),
     PageFluxRss(),
-    Main()
+    Main(),
+    Drawers()
   ];
 
   bool vue=true;

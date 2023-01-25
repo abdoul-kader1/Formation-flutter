@@ -22,7 +22,7 @@ class AndroidIos{
   }
 
   //scaffold et cupetinoPageScaffold
-  Widget androidIosScaffold({required Widget titre,TabBar?tabar, Widget?corps, Color?couleur,List<Widget>?action,Widget?trailing,FloatingActionButton?floatingActionButton}){
+  Widget androidIosScaffold({required Widget titre,TabBar?tabar, Widget?corps, Color?couleur,List<Widget>?action,Widget?trailing,FloatingActionButton?floatingActionButton,Drawer?drowers}){
     return (verifiePlatform)?CupertinoPageScaffold(
       navigationBar:CupertinoNavigationBar(
         trailing:trailing,
@@ -31,6 +31,7 @@ class AndroidIos{
       ),
       child:corps!
     ):Scaffold(
+      drawer: drowers,
       appBar: AppBar(
         title: titre,
         backgroundColor:couleur,

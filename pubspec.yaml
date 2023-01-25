@@ -97,6 +97,7 @@ flutter:
     - lib/image menu/widget_basique.png
     - lib/image menu/flux-rss-programmation.png
     - lib/image menu/lecteur_video.jpg
+    - lib/image menu/drawers.jpg
     #image de l'exercice list et grid
     - lib/exercice_liste_et_grille_marseille/assets ex list/auffes.jpg
     - lib/exercice_liste_et_grille_marseille/assets ex list/borely.jpg
@@ -110,6 +111,17 @@ flutter:
     - lib/exercice_liste_et_grille_marseille/assets ex list/notreDame.jpg
     - lib/exercice_liste_et_grille_marseille/assets ex list/panier.jpg
     - lib/exercice_liste_et_grille_marseille/assets ex list/port.jpg
+    #image drawers
+    - lib/exercice_drawers/images/jardin 1.jpeg
+    - lib/exercice_drawers/images/jardin 2.jpeg
+    - lib/exercice_drawers/images/jardin 3.jpeg
+    - lib/exercice_drawers/images/jardin 4.jpeg
+    - lib/exercice_drawers/images/jardin 5.jpeg
+    - lib/exercice_drawers/images/piscine 1.jpeg
+    - lib/exercice_drawers/images/piscine 2.jpeg
+    - lib/exercice_drawers/images/piscine 3.jpeg
+    - lib/exercice_drawers/images/piscine 4.jpeg
+    - lib/exercice_drawers/images/piscine 5.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware
