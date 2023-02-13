@@ -40,6 +40,12 @@ dependencies:
   http: ^0.13.5
   url_launcher: ^6.1.7
   video_player: ^2.5.0
+  google_fonts: ^3.0.1
+  just_audio: ^0.9.31
+  rxdart: ^0.27.7
+  audio_video_progress_bar: ^1.0.0
+  shared_preferences: ^2.0.17
+
 
 dev_dependencies:
   flutter_test:
@@ -98,6 +104,7 @@ flutter:
     - lib/image menu/flux-rss-programmation.png
     - lib/image menu/lecteur_video.jpg
     - lib/image menu/drawers.jpg
+    - lib/image menu/lecteur_audio.jpg
     #image de l'exercice list et grid
     - lib/exercice_liste_et_grille_marseille/assets ex list/auffes.jpg
     - lib/exercice_liste_et_grille_marseille/assets ex list/borely.jpg
@@ -122,6 +129,36 @@ flutter:
     - lib/exercice_drawers/images/piscine 3.jpeg
     - lib/exercice_drawers/images/piscine 4.jpeg
     - lib/exercice_drawers/images/piscine 5.jpeg
+    #image cover
+    - lib/exercice_application_musique/cover_musique/bosh.jpg
+    - lib/exercice_application_musique/cover_musique/menace_santana.jpg
+
+    #Musique menace santana
+    - lib/exercice_application_musique/musique/menace santana/01-1809.mp3
+    - lib/exercice_application_musique/musique/menace santana/02-Il-Était-Une-Fois.mp3
+    - lib/exercice_application_musique/musique/menace santana/03-FREDDY-KRUEGER.mp3
+    - lib/exercice_application_musique/musique/menace santana/04-Le-Cauchemar-Continue.mp3
+    - lib/exercice_application_musique/musique/menace santana/05-45-Seconds.mp3
+    - lib/exercice_application_musique/musique/menace santana/06-Belek-mS.mp3
+    - lib/exercice_application_musique/musique/menace santana/07-Into-The-Dark.mp3
+    - lib/exercice_application_musique/musique/menace santana/08-Halloween.mp3
+    - lib/exercice_application_musique/musique/menace santana/09-MaDrug-_.mp3
+    #musique bosh
+    - lib/exercice_application_musique/musique/bosh/01-Intro-Algorithme.mp3
+    - lib/exercice_application_musique/musique/bosh/02-Chap-chap.mp3
+    - lib/exercice_application_musique/musique/bosh/03-Super-héros.mp3
+    - lib/exercice_application_musique/musique/bosh/04-Hum-Hum-feat.-Unknown-T.mp3
+    - lib/exercice_application_musique/musique/bosh/05-Toleka.mp3
+    - lib/exercice_application_musique/musique/bosh/06-Visonnaire.mp3
+    - lib/exercice_application_musique/musique/bosh/09-Téléphone.mp3
+    - lib/exercice_application_musique/musique/bosh/11-Sheubonidas.mp3
+    - lib/exercice_application_musique/musique/bosh/12-Black.mp3
+    - lib/exercice_application_musique/musique/bosh/14-Himalaya-feat.-Soolking.mp3
+    - lib/exercice_application_musique/musique/bosh/16-Kiff-aussi.mp3
+    - lib/exercice_application_musique/musique/bosh/18-Avalanche.mp3
+    - lib/exercice_application_musique/musique/bosh/19-Big-liasse.mp3
+    - lib/exercice_application_musique/musique/bosh/Bosh - Gangsta shit  Doser (Clip officiel).mp3
+    - lib/exercice_application_musique/musique/bosh/Bosh - Mauvais djo (Clip officiel).mp3
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

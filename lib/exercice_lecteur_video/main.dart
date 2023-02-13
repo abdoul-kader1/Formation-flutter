@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 import 'controlleurs/controleMain.dart';
 
-class Main extends StatefulWidget{
+class LecteurVideo extends StatefulWidget{
 
   String title= "Exercice Jouer de la vidéo";
   String img ="lib/image menu/lecteur_video.jpg";
 
   @override
-  MainState createState()=>MainState();
+  LecteurVideoState createState()=>LecteurVideoState();
 }
 
-class MainState extends State<Main>{
+class LecteurVideoState extends State<LecteurVideo>{
   @override
   Widget build(BuildContext context) {
     return ControleMain();

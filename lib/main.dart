@@ -2,13 +2,18 @@ import 'package:flutter/material.dart';
 import 'Exercice Basique/ExerciceBasique.dart';
 import 'Exercice widget interactifs/ExerciceWidgetInteractif.dart';
 import 'adapter_platform/android_ios.dart';
+import 'exercice_application_musique/main.dart';
 import 'exercice_drawers/main.dart';
 import 'exercice_flux_rss/flux_rss.dart';
 import 'exercice_lecteur_video/main.dart';
 import 'exercice_liste_et_grille_marseille/liste_et_grille.dart';
 import 'exercice_pop_up_et_navigation/navigation.dart';
-
+import 'package:flutter/services.dart';
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp
+  ]);
   runApp(const MyApp());
 }
 
@@ -39,8 +44,9 @@ class _MyHomePageState extends State<MyHomePage> {
     PopUpEtNavigation(),
     ListeEtGrille(),
     PageFluxRss(),
-    Main(),
-    Drawers()
+    LecteurVideo(),
+    Drawers(),
+    ApplicationMusique()
   ];
 
   bool vue=true;
@@ -140,7 +146,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         child:Image.asset(contenu.img,fit: BoxFit.cover),
                       )
                   ),
-                  Text("${contenu.title}",style: TextStyle(fontWeight: FontWeight.bold),)
+                  Text("${contenu.title}",style: TextStyle(fontWeight: FontWeight.bold),textAlign: TextAlign.center)
                 ],
               ),
               onTap: (){
