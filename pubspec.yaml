@@ -45,6 +45,7 @@ dependencies:
   rxdart: ^0.27.7
   audio_video_progress_bar: ^1.0.0
   shared_preferences: ^2.0.17
+  provider: ^6.0.5
 
 
 dev_dependencies:
@@ -105,6 +106,7 @@ flutter:
     - lib/image menu/lecteur_video.jpg
     - lib/image menu/drawers.jpg
     - lib/image menu/lecteur_audio.jpg
+    - lib/image menu/provider.jpg
     #image de l'exercice list et grid
     - lib/exercice_liste_et_grille_marseille/assets ex list/auffes.jpg
     - lib/exercice_liste_et_grille_marseille/assets ex list/borely.jpg

@@ -9,12 +9,24 @@ import 'exercice_lecteur_video/main.dart';
 import 'exercice_liste_et_grille_marseille/liste_et_grille.dart';
 import 'exercice_pop_up_et_navigation/navigation.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
+import 'exercice_provider/exercice_provider.dart';
+import 'exercice_provider/mes_providers/le_compteur.dart';
+
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setPreferredOrientations([
     DeviceOrientation.portraitUp
   ]);
-  runApp(const MyApp());
+
+  runApp(
+    MultiProvider(
+        providers:[
+          ChangeNotifierProvider(create:(_)=>LeCompteur())
+        ],
+      child: const MyApp(),
+    )
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -46,7 +58,8 @@ class _MyHomePageState extends State<MyHomePage> {
     PageFluxRss(),
     LecteurVideo(),
     Drawers(),
-    ApplicationMusique()
+    ApplicationMusique(),
+    PageProvider()
   ];
 
   bool vue=true;
