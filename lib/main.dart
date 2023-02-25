@@ -7,6 +7,7 @@ import 'exercice_drawers/main.dart';
 import 'exercice_flux_rss/flux_rss.dart';
 import 'exercice_lecteur_video/main.dart';
 import 'exercice_liste_et_grille_marseille/liste_et_grille.dart';
+import 'exercice_meteo/main.dart';
 import 'exercice_pop_up_et_navigation/navigation.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
@@ -15,9 +16,7 @@ import 'exercice_provider/mes_providers/le_compteur.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setPreferredOrientations([
-    DeviceOrientation.portraitUp
-  ]);
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
 
   runApp(
     MultiProvider(
@@ -34,8 +33,17 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AndroidIos().materialCupertinoApp(
-        home: const MyHomePage(title: "les exercices")
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+        theme: ThemeData(
+            primarySwatch: Colors.blue,
+            textTheme: TextTheme(
+                headlineLarge: TextStyle(fontSize: 70,fontWeight: FontWeight.bold,color:Theme.of(context).primaryColor),
+                headlineMedium: TextStyle(fontSize: 25,color:Theme.of(context).primaryColorDark),
+                headlineSmall: const TextStyle(fontSize:14,fontStyle: FontStyle.italic)
+            )
+        ),
+      home:const MyHomePage(title: "les exercices"),
     );
   }
 }
@@ -59,7 +67,8 @@ class _MyHomePageState extends State<MyHomePage> {
     LecteurVideo(),
     Drawers(),
     ApplicationMusique(),
-    PageProvider()
+    PageProvider(),
+    PageMeteo()
   ];
 
   bool vue=true;

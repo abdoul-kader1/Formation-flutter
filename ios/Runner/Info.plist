@@ -9,6 +9,10 @@
         </dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+    <string>utilisation de la position</string>
+    <key>NSLocationAlwaysUsageDescription</key>
+    <string>utilisation de la position</string>
 	<key>CFBundleDisplayName</key>
 	<string>Formation Flutter</string>
 	<key>CFBundleExecutable</key>

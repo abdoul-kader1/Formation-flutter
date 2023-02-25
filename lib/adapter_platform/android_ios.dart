@@ -13,7 +13,9 @@ class AndroidIos{
       title: 'Formation flutter',
       home: home,
     ):MaterialApp(
-      theme: ThemeData(primarySwatch: Colors.blue),
+      theme: ThemeData(
+          primarySwatch: Colors.blue,
+      ),
       debugShowCheckedModeBanner: false,
       title: 'Formation flutter',
       home: home,
