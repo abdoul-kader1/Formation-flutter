@@ -3,6 +3,7 @@ import 'Exercice Basique/ExerciceBasique.dart';
 import 'Exercice widget interactifs/ExerciceWidgetInteractif.dart';
 import 'adapter_platform/android_ios.dart';
 import 'exercice_application_musique/main.dart';
+import 'exercice_appreil_photo/main.dart';
 import 'exercice_drawers/main.dart';
 import 'exercice_flux_rss/flux_rss.dart';
 import 'exercice_lecteur_video/main.dart';
@@ -68,7 +69,8 @@ class _MyHomePageState extends State<MyHomePage> {
     Drawers(),
     ApplicationMusique(),
     PageProvider(),
-    PageMeteo()
+    PageMeteo(),
+    AppareilPhoto(),
   ];
 
   bool vue=true;
